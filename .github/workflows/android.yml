@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: List APK files
-        run: ls -R app/build/outputs/apk/
+        run: ls -R app/apk/
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
