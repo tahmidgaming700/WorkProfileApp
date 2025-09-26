@@ -26,10 +26,10 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: List APK files
-        run: ls -R app/build/outputs/apk/
+        run: ls -R .github
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
           path: .github/app-debug.apk
