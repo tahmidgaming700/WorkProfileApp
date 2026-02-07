@@ -1,0 +1,6 @@
+{
+  "version": "2026.02.01",
+  "msuUrl": "https://updates.example.com/windows10-kb5034123-x64.msu",
+  "sha256": "D2A4B7D86FB2B07AAE6D4E2A3F2E1E8EF5F3D7DE2A1D13C93D15A7BF90A0C123",
+  "description": "Security rollup"
+}
