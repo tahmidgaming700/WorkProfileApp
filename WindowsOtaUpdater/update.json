@@ -1,7 +1,7 @@
 {
   "version": "25H2",
   "build": "26200.7705",
-  "url": "https://catalog.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/1f3ba14b-3831-4dd8-8839-b63b795497e4/public/windows11.0-kb5074105-x64_74e1f93136eef7114e2bed8ff032b049ec62992a.msu",
+  "msuurl": "https://catalog.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/1f3ba14b-3831-4dd8-8839-b63b795497e4/public/windows11.0-kb5074105-x64_74e1f93136eef7114e2bed8ff032b049ec62992a.msu",
   "sha256": "MgSFag7APT7KwBnQr0rgc57FrnZScLVzQASFk0YWC0E=",
   "changelog": [
     "Security patches",
@@ -9,3 +9,4 @@
     "Feature updates"
   ]
 }
+
