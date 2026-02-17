@@ -1,0 +1,42 @@
+<Window x:Class="VmManagerWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="QEMU VM Manager" Height="600" Width="1000">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="VM Templates" Margin="0,0,8,0">
+            <DockPanel>
+                <Button Content="Create VM from Template" DockPanel.Dock="Bottom" Margin="6" Height="34" Click="CreateVmFromTemplate_Click"/>
+                <ListBox x:Name="TemplatesListBox" Margin="6" DisplayMemberPath="Name"/>
+            </DockPanel>
+        </GroupBox>
+
+        <GroupBox Header="Existing VMs" Grid.Column="1">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="6">
+                    <Button Content="Refresh" Width="90" Margin="0,0,8,0" Click="Refresh_Click"/>
+                    <Button Content="Edit Settings" Width="110" Margin="0,0,8,0" Click="EditVm_Click"/>
+                    <Button Content="Select ISO" Width="90" Margin="0,0,8,0" Click="SelectIso_Click"/>
+                    <Button Content="Kernel Testing Mode" Width="150" Margin="0,0,8,0" Click="KernelTesting_Click"/>
+                    <Button Content="Launch VM" Width="90" Click="LaunchVm_Click"/>
+                </StackPanel>
+                <DataGrid x:Name="VmsDataGrid" Margin="6" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
+                        <DataGridTextColumn Header="Template" Binding="{Binding TemplateId}" Width="*"/>
+                        <DataGridTextColumn Header="RAM (MB)" Binding="{Binding RamMb}" Width="*"/>
+                        <DataGridTextColumn Header="CPU" Binding="{Binding CpuCores}" Width="*"/>
+                        <DataGridCheckBoxColumn Header="Kernel Mode" Binding="{Binding KernelTesting.Enabled}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+    </Grid>
+</Window>

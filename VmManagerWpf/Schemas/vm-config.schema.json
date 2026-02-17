@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/vm-config.schema.json",
+  "title": "VM Config",
+  "type": "object",
+  "required": ["name", "templateId", "isoPath", "diskPath", "ramMb", "cpuCores", "machine", "enableUefi", "kernelTesting"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "templateId": { "type": "string" },
+    "isoPath": { "type": "string" },
+    "diskPath": { "type": "string" },
+    "ramMb": { "type": "integer", "minimum": 256 },
+    "cpuCores": { "type": "integer", "minimum": 1 },
+    "machine": { "type": "string" },
+    "enableUefi": { "type": "boolean" },
+    "kernelTesting": {
+      "type": "object",
+      "required": ["enabled", "kernelPath", "initramfsPath", "kernelCmdline"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "kernelPath": { "type": "string" },
+        "initramfsPath": { "type": "string" },
+        "kernelCmdline": { "type": "string" }
+      }
+    }
+  }
+}

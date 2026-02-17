@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "templates": [
+    {
+      "id": "ubuntu",
+      "name": "Ubuntu",
+      "description": "Ubuntu LTS desktop",
+      "isoUrl": "https://releases.ubuntu.com/24.04/ubuntu-24.04-desktop-amd64.iso",
+      "isoFileName": "ubuntu-24.04-desktop-amd64.iso",
+      "sha256": "d44fe4f95d5ee1e0f76717716f1a984f762e1f4a6f3f9d6e7d9f5d3f65d0f2f0",
+      "defaultRamMb": 4096,
+      "defaultCpuCores": 4,
+      "defaultDiskGb": 40,
+      "accelerator": "whpx"
+    },
+    {
+      "id": "arch",
+      "name": "Arch Linux",
+      "description": "Arch latest ISO",
+      "isoUrl": "https://geo.mirror.pkgbuild.com/iso/latest/archlinux-x86_64.iso",
+      "isoFileName": "archlinux-x86_64.iso",
+      "sha256": "f5cb1290e0ca0fce3f4db80dc7f5ef4f7cc5f0a0f9136f5573167e204f6fdc13",
+      "defaultRamMb": 2048,
+      "defaultCpuCores": 2,
+      "defaultDiskGb": 30,
+      "accelerator": "whpx"
+    },
+    {
+      "id": "windows",
+      "name": "Windows",
+      "description": "Windows install ISO",
+      "isoUrl": "https://software.download.prss.microsoft.com/dbazure/Win11_24H2_English_x64.iso",
+      "isoFileName": "Win11_24H2_English_x64.iso",
+      "sha256": "",
+      "defaultRamMb": 8192,
+      "defaultCpuCores": 4,
+      "defaultDiskGb": 64,
+      "accelerator": "whpx"
+    },
+    {
+      "id": "android-x86",
+      "name": "Android-x86",
+      "description": "Android-x86 stable release",
+      "isoUrl": "https://sourceforge.net/projects/android-x86/files/Release%209.0-r2/android-x86_64-9.0-r2.iso/download",
+      "isoFileName": "android-x86_64-9.0-r2.iso",
+      "sha256": "",
+      "defaultRamMb": 2048,
+      "defaultCpuCores": 2,
+      "defaultDiskGb": 16,
+      "accelerator": "whpx"
+    }
+  ]
+}
