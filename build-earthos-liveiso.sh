@@ -80,7 +80,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y \
   linux-image-amd64 live-boot systemd-sysv sudo bash nano \
-  network-manager xorg openbox lightdm firefox-esr
+  network-manager xorg plasma-desktop openbox lightdm firefox-esr
 
 # Earth user setup
 id -u earth >/dev/null 2>&1 || useradd -m -s /bin/bash earth
