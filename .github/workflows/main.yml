@@ -1,0 +1,22 @@
+name: Interactive macOS 26 Debug
+on: workflow_dispatch # Allows you to trigger this manually from GitHub's UI
+
+jobs:
+  interactive-screen:
+    runs-on: macos-26 # Targets GitHub's official Apple Silicon Tahoe image
+    steps:
+      - name: Configure macOS Screen Sharing & Password
+        run: |
+          # 1. Set a VNC authentication password for the cloud machine
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -configure -clientopts -setvncpassword -vncpassword "SecurePass123!"
+
+          # 2. Activate Apple Screen Sharing/VNC services
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -activate -configure -allowAccessFor -allUsers -privs -all
+
+      - name: Create Secure Network Tunnel
+        uses: loophole/loophole-action@v1 # Or any alternative tunnel like ngrok / tmate
+        with:
+          port: 5900
+          proto: tcp
