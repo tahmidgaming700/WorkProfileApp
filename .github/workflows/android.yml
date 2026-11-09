@@ -3,8 +3,11 @@ on: workflow_dispatch # Allows you to trigger this manually from GitHub's UI
 
 jobs:
   interactive-screen:
-    runs-on: macos-26 # Targets GitHub's official Apple Silicon Tahoe image
+    runs-on: macos-26
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Configure macOS Screen Sharing & Password
         run: |
           # 1. Set a VNC authentication password for the cloud machine
@@ -15,8 +18,5 @@ jobs:
           sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
             -activate -configure -allowAccessFor -allUsers -privs -all
 
-      - name: Create Secure Network Tunnel
-        uses: loophole/loophole-action@v1 # Or any alternative tunnel like ngrok / tmate
-        with:
-          port: 5900
-          proto: tcp
+      - name: Setup Tmate Tunnel
+        uses: mxschmitt/action-tmate
