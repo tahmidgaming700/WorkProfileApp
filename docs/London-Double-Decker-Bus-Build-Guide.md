@@ -7,6 +7,12 @@ A practical build plan for a compact, realistic red London-style double-decker b
 
 > **Inventory note:** The available photograph shows mixed red, black, yellow and white pieces. The builder clarified that the wheels are Technic-style: four main wheels plus two smaller wheels. Exact brick counts, axle lengths, hub types and connector compatibility cannot be confirmed from the overview photograph. This guide therefore gives an adaptable construction sequence rather than inventing an exact parts count.
 
+## Visual build guide
+
+![Illustrated London double-decker bus construction guide](London-Double-Decker-Bus-Visual-Guide.svg)
+
+[Open the full-size illustrated guide](London-Double-Decker-Bus-Visual-Guide.svg)
+
 ## 1. Design brief
 
 - Two passenger decks, with two distinct rows of windows.
