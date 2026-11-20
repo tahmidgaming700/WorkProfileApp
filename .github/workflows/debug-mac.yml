@@ -1,22 +1,111 @@
-name: Interactive macOS 26 Debug
-on: workflow_dispatch # Allows you to trigger this manually from GitHub's UI
+name: macOS Remote Desktop (VNC)
+
+on:
+  workflow_dispatch:
+    inputs:
+      session_minutes:
+        description: "How long to keep the Mac desktop online"
+        required: true
+        type: choice
+        default: "120"
+        options:
+          - "60"
+          - "120"
+          - "180"
+          - "240"
+          - "300"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-remote-desktop
+  cancel-in-progress: false
 
 jobs:
-  interactive-screen:
-    runs-on: macos-26 # Targets GitHub's official Apple Silicon Tahoe image
+  desktop:
+    # macOS 14 was retired by GitHub on 2 November 2026.
+    # Use the supported Intel macOS 15 image for this remote-desktop experiment.
+    runs-on: macos-15-intel
+    timeout-minutes: 360
+
     steps:
-      - name: Configure macOS Screen Sharing & Password
+      - name: Validate required secrets
+        shell: bash
+        env:
+          VNC_PASSWORD: ${{ secrets.VNC_PASSWORD }}
+          TAILSCALE_AUTH_KEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
         run: |
-          # 1. Set a VNC authentication password for the cloud machine
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
-            -configure -clientopts -setvncpassword -vncpassword "SecurePass123!"
+          set -euo pipefail
+          if [[ -z "$VNC_PASSWORD" ]]; then
+            echo "::error::Add the VNC_PASSWORD repository secret."
+            exit 1
+          fi
+          if [[ "${#VNC_PASSWORD}" -ne 8 ]]; then
+            echo "::error::VNC_PASSWORD must be exactly 8 characters (Apple's legacy VNC password limit)."
+            exit 1
+          fi
+          if [[ -z "$TAILSCALE_AUTH_KEY" ]]; then
+            echo "::error::Add the TAILSCALE_AUTH_KEY repository secret."
+            exit 1
+          fi
 
-          # 2. Activate Apple Screen Sharing/VNC services
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
-            -activate -configure -allowAccessFor -allUsers -privs -all
+      - name: Enable macOS Screen Sharing
+        shell: bash
+        env:
+          VNC_PASSWORD: ${{ secrets.VNC_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KICKSTART="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
 
-      - name: Create Secure Network Tunnel
-        uses: loophole/loophole-action@v1 # Or any alternative tunnel like ngrok / tmate
+          # Configure VNC authentication without printing the password.
+          sudo "$KICKSTART" -configure -clientopts -setvncpassword -vncpassword "$VNC_PASSWORD"
+          sudo "$KICKSTART" -activate -configure -allowAccessFor -allUsers -privs -all
+
+          # Confirm that the Screen Sharing service opened its local port.
+          for attempt in $(seq 1 30); do
+            if nc -z 127.0.0.1 5900; then
+              echo "Screen Sharing is listening on TCP 5900."
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "::error::Screen Sharing did not open TCP port 5900."
+          exit 1
+
+      - name: Join private Tailscale network
+        uses: tailscale/github-action@v3
         with:
-          port: 5900
-          proto: tcp
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+          hostname: workprofile-macos-${{ github.run_id }}
+
+      - name: Show private VNC connection details
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAILSCALE_IP="$(tailscale ip -4 | head -n 1)"
+          if [[ -z "$TAILSCALE_IP" ]]; then
+            echo "::error::Could not obtain the runner's Tailscale IPv4 address."
+            exit 1
+          fi
+          {
+            echo "## macOS desktop is ready"
+            echo
+            echo "- **VNC address:** `vnc://$TAILSCALE_IP:5900`"
+            echo "- **VNC password:** the value stored in your `VNC_PASSWORD` repository secret"
+            echo "- **Session length:** ${{ inputs.session_minutes }} minutes"
+            echo
+            echo "Connect a VNC viewer on a device signed in to the same Tailscale network. Do not share this run's details with people outside your tailnet."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "Private Tailscale address: $TAILSCALE_IP"
+
+      - name: Keep the desktop session alive
+        shell: bash
+        env:
+          SESSION_MINUTES: ${{ inputs.session_minutes }}
+        run: |
+          set -euo pipefail
+          [[ "$SESSION_MINUTES" =~ ^[0-9]+$ ]]
+          echo "Desktop session will remain available for $SESSION_MINUTES minutes."
+          sleep "$((SESSION_MINUTES * 60))"
