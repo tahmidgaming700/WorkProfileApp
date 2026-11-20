@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1800" viewBox="0 0 1400 1800">
+<defs><style>
+.title{font: bold 54px Arial;fill:#fff}.sub{font:24px Arial;fill:#fff}.h{font:bold 30px Arial;fill:#fff}.t{font:22px Arial;fill:#222}.small{font:18px Arial;fill:#333}.red{fill:#c91520}.dark{fill:#24272b}.glass{fill:#18232d}.white{fill:#fff}.yellow{fill:#ffd52a}.line{stroke:#24272b;stroke-width:8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+</style></defs>
+<rect width="1400" height="1800" fill="#f1f3f6"/>
+<rect x="25" y="20" width="1350" height="115" rx="22" class="red"/>
+<text x="65" y="83" class="title">LONDON DOUBLE-DECKER BUS</text><text x="68" y="118" class="sub">Visual build guide • ordinary bricks + Technic-style wheels</text>
+<!-- finished bus side -->
+<rect x="70" y="175" width="1260" height="350" rx="24" fill="#fff" stroke="#d0d5dd" stroke-width="3"/>
+<text x="100" y="220" class="h" fill="#222">TARGET MODEL — SIDE VIEW</text>
+<rect x="180" y="335" width="1000" height="140" rx="12" class="red"/><rect x="180" y="255" width="1000" height="80" rx="12" class="red"/>
+<rect x="195" y="275" width="120" height="48" rx="6" class="glass"/><rect x="330" y="275" width="120" height="48" rx="6" class="glass"/><rect x="465" y="275" width="120" height="48" rx="6" class="glass"/><rect x="600" y="275" width="120" height="48" rx="6" class="glass"/><rect x="735" y="275" width="120" height="48" rx="6" class="glass"/><rect x="870" y="275" width="120" height="48" rx="6" class="glass"/>
+<rect x="195" y="355" width="120" height="90" rx="6" class="glass"/><rect x="330" y="355" width="120" height="90" rx="6" class="glass"/><rect x="465" y="355" width="120" height="90" rx="6" class="glass"/><rect x="600" y="355" width="120" height="90" rx="6" class="glass"/><rect x="735" y="355" width="120" height="90" rx="6" class="glass"/><rect x="870" y="355" width="120" height="90" rx="6" class="glass"/>
+<rect x="180" y="325" width="1000" height="12" class="white"/><circle cx="360" cy="480" r="58" class="dark"/><circle cx="360" cy="480" r="27" fill="#bbb"/><circle cx="1000" cy="480" r="58" class="dark"/><circle cx="1000" cy="480" r="27" fill="#bbb"/>
+<text x="100" y="570" class="small">Red body • dark window bands • white trim • four main wheels • flat roof</text>
+<!-- stages cards -->
+<g>
+<rect x="45" y="620" width="630" height="500" rx="20" fill="#fff" stroke="#cbd0d8" stroke-width="3"/><rect x="45" y="620" width="630" height="65" rx="18" class="red"/><text x="75" y="665" class="h">1  CHASSIS + WHEELS</text>
+<!-- chassis visual -->
+<path d="M140 830 L565 830 M175 790 L530 790 M175 790 L140 830 M530 790 L565 830" class="line"/>
+<path d="M225 790 L225 830 M470 790 L470 830" class="line"/>
+<circle cx="190" cy="865" r="45" class="dark"/><circle cx="515" cy="865" r="45" class="dark"/><circle cx="190" cy="865" r="18" fill="#bbb"/><circle cx="515" cy="865" r="18" fill="#bbb"/>
+<text x="85" y="960" class="t">• Two long side rails</text><text x="85" y="1000" class="t">• Cross-pieces at front, middle, rear</text><text x="85" y="1040" class="t">• Fit 4 wheels; check free rotation</text>
+<rect x="725" y="620" width="630" height="500" rx="20" fill="#fff" stroke="#cbd0d8" stroke-width="3"/><rect x="725" y="620" width="630" height="65" rx="18" class="red"/><text x="755" y="665" class="h">2  LOWER DECK</text>
+<rect x="825" y="790" width="430" height="140" rx="12" class="red"/><rect x="850" y="815" width="95" height="65" rx="5" class="glass"/><rect x="960" y="815" width="95" height="65" rx="5" class="glass"/><rect x="1070" y="815" width="95" height="65" rx="5" class="glass"/>
+<text x="765" y="975" class="t">• Add a flat floor to the chassis</text><text x="765" y="1015" class="t">• Red side walls with window gaps</text><text x="765" y="1055" class="t">• Leave a large front windscreen</text>
+<rect x="45" y="1160" width="630" height="500" rx="20" fill="#fff" stroke="#cbd0d8" stroke-width="3"/><rect x="45" y="1160" width="630" height="65" rx="18" class="red"/><text x="75" y="1205" class="h">3  UPPER DECK SUPPORTS</text>
+<rect x="155" y="1400" width="420" height="100" rx="8" class="red"/><path d="M185 1400 V1300 M545 1400 V1300 M185 1300 H545" class="line"/><rect x="185" y="1270" width="360" height="30" class="red"/><rect x="210" y="1278" width="70" height="18" class="glass"/><rect x="300" y="1278" width="70" height="18" class="glass"/><rect x="390" y="1278" width="70" height="18" class="glass"/>
+<text x="85" y="1545" class="t">• Add strong vertical corner posts</text><text x="85" y="1585" class="t">• Brace sides and across the bus</text><text x="85" y="1625" class="t">• Build upper floor only when stable</text>
+<rect x="725" y="1160" width="630" height="500" rx="20" fill="#fff" stroke="#cbd0d8" stroke-width="3"/><rect x="725" y="1160" width="630" height="65" rx="18" class="red"/><text x="755" y="1205" class="h">4  UPPER BODY + ROOF</text>
+<rect x="850" y="1370" width="390" height="115" rx="8" class="red"/><rect x="850" y="1290" width="390" height="80" rx="8" class="red"/><rect x="875" y="1308" width="80" height="45" class="glass"/><rect x="970" y="1308" width="80" height="45" class="glass"/><rect x="1065" y="1308" width="80" height="45" class="glass"/><rect x="875" y="1390" width="80" height="65" class="glass"/><rect x="970" y="1390" width="80" height="65" class="glass"/><rect x="1065" y="1390" width="80" height="65" class="glass"/><rect x="835" y="1270" width="420" height="22" rx="6" class="red"/>
+<text x="765" y="1545" class="t">• Add upper side walls + window gaps</text><text x="765" y="1585" class="t">• Fit a flat red roof securely</text><text x="765" y="1625" class="t">• Add lights, bumpers and sign</text>
+<rect x="45" y="1690" width="1310" height="80" rx="18" fill="#fff3c4" stroke="#e0bd50" stroke-width="2"/>
+<text x="75" y="1738" class="t">CHECK: wheels roll freely • chassis stays square • upper deck does not wobble • roof is secure</text>
+</g></svg>
